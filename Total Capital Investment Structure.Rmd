@@ -1,0 +1,72 @@
+---
+title: "Waterfall Chart on Biogas Total Capital Investment Structure"
+author: "Bernardia V. Arumsari"
+date: "7/4/2022"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+This is an R Markdown notebook which generated visualization of the total biogas capital investment structure for Bernardia Vitri Arumsari's Thesis titled "Economic Feasibility and Community Perception of Biogas from Cacao Waste".
+
+```{r}
+library(readxl)
+TCI <- read_excel("D:/Hi.xlsx", sheet = "Sheet3")
+View(TCI)
+
+library(tidyverse)
+library(ggalluvial)
+library(waterfalls)
+```
+
+
+For 1L biogas plant with baloon type biogas:
+
+```{r}
+p<-ggplot(TCI, aes(x = Materials, y = Amount, fill=type)) + geom_rect(aes(x = Materials, 
+                                                       xmin = id - 0.45, xmax = id + 0.45, ymin = end, 
+                                                       ymax = start))+ theme_minimal()+ scale_x_discrete(breaks=c("Total", "Basic Materials", "Appliances","Labor","Management","Contingency","Land Cost","Transportation"),
+                     labels=c("Land Cost", "Basic Materials", "Total","Labor","Contingency","Appliances","Management","Transportation"))
+p
+```
+
+
+For 4L biogas plant with fixed-dome type biogas:
+
+```{r}
+p2<-ggplot(TCI, aes(x = Materials, y = Amount, fill=type)) + geom_rect(aes(x = Materials, 
+                                                       xmin = id - 0.45, xmax = id + 0.45, ymin = end4, 
+                                                       ymax = start4))+ theme_minimal()+ scale_x_discrete(breaks=c("Total", "Basic Materials", "Appliances","Labor","Management","Contingency","Land Cost","Transportation"),
+                     labels=c("Land Cost", "Basic Materials", "Total","Labor","Contingency","Appliances","Management","Transportation"))
+p2
+
+```
+
+
+For 6L biogas plant with fixed-dome type biogas:
+
+```{r}
+p4<-ggplot(TCI, aes(x = Materials, y = Amount, fill=type)) + geom_rect(aes(x = Materials, 
+                                                       xmin = id - 0.45, xmax = id + 0.45, ymin = end6, 
+                                                       ymax = start6))+ theme_minimal()+ scale_x_discrete(breaks=c("Total", "Basic Materials", "Appliances","Labor","Management","Contingency","Land Cost","Transportation"),
+                     labels=c("Land Cost", "Basic Materials", "Total","Labor","Contingency","Appliances","Management","Transportation"))
+p4
+
+```
+
+
+For 8L biogas plant with fixed-dome type biogas:
+
+```{r}
+p5<-ggplot(TCI, aes(x = Materials, y = Amount, fill=type)) + geom_rect(aes(x = Materials, 
+                                                       xmin = id - 0.45, xmax = id + 0.45, ymin = end8, 
+                                                       ymax = start8))+ theme_minimal()+ scale_x_discrete(breaks=c("Total", "Basic Materials", "Appliances","Labor","Management","Contingency","Land Cost","Transportation"),
+                     labels=c("Land Cost", "Basic Materials", "Total","Labor","Contingency","Appliances","Management","Transportation"))
+p5
+```
+
