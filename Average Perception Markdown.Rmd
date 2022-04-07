@@ -1,0 +1,55 @@
+---
+title: "Biogas Perception Score"
+author: "Bernardia V. Arumsari"
+date: "7/4/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is an R file which generated visualization of the biogas average perception for Bernardia Vitri Arumsari's Thesis titled "Economic Feasibility and Community Perception of Biogas from Cacao Waste".
+
+
+```{r Read}
+library(readxl)
+Score <- read_excel("D:/Hi.xlsx", sheet = "Score")
+```
+
+
+```{r Score, echo=FALSE}
+View(Score)
+```
+
+The library used are:
+
+```{r Libra}
+library(ggplot2)
+library(ggridges)
+library(ggthemes)
+```
+
+This is the visualization:
+
+```{r ggplot}
+ggplot(Score, aes(x = Score , y = Indicator, group = interaction(Section,Indicator), fill = Section)) +
+  geom_density_ridges(alpha = 0.5,
+                      color = "azure",
+                      linetype = 1,
+                      lwd = 0.5,
+                      scale = 0.9,
+                      quantile_lines=T,
+                      quantile_fun=mean) + coord_cartesian(clip = "off") + # To avoid cut off
+  theme_minimal()+#theme(legend.position = "none")+
+  labs(title = 'Average Perception Score')
+```
+
+The following discussion can be found in the thesis:
+
+...Furthermore, the result from knowledge part of perception questions shows that complexity, which highlight the degree to which an innovation is perceived as relatively difficult to understand and use, has average score below 3 (Figure 6.3.1.). This means that the respondents cannot decide whether biogas can be easy to use or understand as there was no available biogas in in the site at the moment of data collection... 
+
+...The overall attitude of the respondents are as positive as can be seen in Figure 6.3.1., with exception of trialability section. Trialability highlights the degree to which an innovation can be experimented with or tried out. This means the farmers mostly do not want to use biogas if biogas is not available for use, has a possibility to suffer loss, and expensive. Hence, it is important for the future biogas provider to make it cheap and has kind of guarantee not to cause losses due to its operations...
+
+...While in Rogers (2010), it is stated that the formation of a favorable or unfavorable attitude toward an innovation does not always lead to an adoption or rejection decision. In this case, behavior towards biogas also follows the attitude (Figure 6.3.1). Where relative advantage, compatibility, complexity, and observability are positive...
+
